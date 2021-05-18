@@ -39,7 +39,7 @@ export default function EmoApp() {
     //   entryTitle: "static entry title",
     //   emotionalRating: emotion,
     // });
-    alert('Request sent')
+    alert("Request sent");
     // Step 1: Change screen to loading
     // Step 2: Send post request
     // Step 3: empty state
