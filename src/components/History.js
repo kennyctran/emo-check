@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { defaults, Line } from "react-chartjs-2";
+import axios from "axios";
 
 const defaultData = {
   labels: ["monday", "tuesday", "wednesday"],
@@ -26,6 +27,15 @@ const options = {
 };
 
 export default function History() {
+  useEffect(() => {
+    (async (username) => {
+      const { data } = await axios.get("/api/history", {
+        params: { username },
+      });
+      console.log(data);
+      // DO SOMETHING WITH THE DATA
+    })("Test username");
+  }, []);
   return (
     <div>
       <Line data={defaultData} options={options} />
