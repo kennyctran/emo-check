@@ -27,7 +27,7 @@ const db = (async () => {
     // });
     return mongoose.connection;
   } catch (err) {
-    console.log(`Could not conect to DB at ${DB_URI}`);
+    console.log(`Could not conect to DB at ${DB_NAME}`);
     return mongoose.connection;
   }
 })();
