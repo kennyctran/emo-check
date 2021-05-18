@@ -10,5 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "../dist")));
 
 app.post("/api/submit", controller.submit);
+app.get("/api/history", controller.viewHistory);
 
 module.exports = app;

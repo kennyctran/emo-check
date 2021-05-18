@@ -82,6 +82,7 @@ typings/
 .nuxt
 dist/bundle.js
 /dist/*.svg
+/dist/bundle.js.map
 
 # Gatsby files
 .cache/
