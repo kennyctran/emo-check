@@ -10,9 +10,27 @@ import Anxious from "../images/Anxious.svg";
 import Crying from "../images/Crying.svg";
 import { TextField, Fab } from "@material-ui/core";
 import useEmotionSelector from "../custom/useEmotionSelector";
+import axios from "axios";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 
 export default function EmoApp() {
+  // Will need to handle grabbing username
   const [emotion, setEmotion] = useEmotionSelector(5);
+  const [entry, setEntry] = useState("");
+  const [entryTitle, setEntryTitle] = useState("");
+
+  const handleSubmit = async () => {
+    // const res = await axios.post('/api/submit', {})
+    console.log({
+      username: "Kenny",
+      date: new Date(),
+      entry,
+      entryTitle,
+      emotionalRating: emotion,
+    });
+  };
+
   return (
     <div>
       <div>
@@ -93,6 +111,8 @@ export default function EmoApp() {
           name="entry"
           placeholder="entry"
           helperText="entry"
+          value={entry}
+          onChange={(e) => setEntry(e.target.value)}
         />
         {/* <label for="entryTitle"></label>
         <input type="text" id="entryTitle" name="entryTitle"></input> */}
@@ -103,8 +123,12 @@ export default function EmoApp() {
           label="entryTitle"
           name="entryTitle"
           placeholder="Entry Title"
+          value={entryTitle}
+          onChange={(e) => setEntryTitle(e.target.value)}
         />
-        <Fab variant="extended">Submit Emo</Fab>
+        <Fab variant="extended" onClick={handleSubmit}>
+          Submit Emo
+        </Fab>
       </form>
     </div>
   );
