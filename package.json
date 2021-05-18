@@ -20,6 +20,7 @@
     "chart.js": "^3.2.1",
     "express": "^4.17.1",
     "fontsource-roboto": "^4.0.0",
+    "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "mongoose": "^5.12.9",
     "morgan": "^1.10.0",

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { defaults, Line } from "react-chartjs-2";
 import axios from "axios";
 import createChartData from "../helpers/createChartData";
+import ViewEntries from "./ViewEntries";
+import { isEmpty } from "lodash";
 
 const defaultData = {
   labels: [],
@@ -28,19 +30,25 @@ const options = {
 };
 
 export default function History() {
-  const [data, setData] = useState({});
+  const [chartData, setChartData] = useState({});
+  const [accordionData, setAccordionData] = useState({});
 
   useEffect(() => {
     (async (username) => {
       const { data } = await axios.get("/api/history", {
         params: { username },
       });
-      setData(createChartData(data));
+      setAccordionData(data);
+      setChartData(createChartData(data));
     })("Test username");
   }, []);
   return (
     <div>
-      <Line data={data} options={options} />
+      <Line data={chartData} options={options} />
+      {!isEmpty(accordionData) &&
+        accordionData.ratings.map((rating, i) => {
+          return <ViewEntries key={i} accordionData={rating} />;
+        })}
     </div>
   );
 }
