@@ -12,6 +12,7 @@ const db = (async () => {
     await mongoose.connect(DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     });
     console.log(`Connected to DB at ${DB_NAME}`);
     // await User.create({
