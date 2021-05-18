@@ -14,6 +14,16 @@ import axios from "axios";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
+const bigEmoji = {
+  height: "100px",
+  width: "100px",
+};
+
+const smallEmoji = {
+  height: "50px",
+  width: "50px",
+};
+
 export default function EmoApp() {
   // Will need to handle grabbing username
   const [emotion, setEmotion] = useEmotionSelector(5);
@@ -21,14 +31,20 @@ export default function EmoApp() {
   const [entryTitle, setEntryTitle] = useState("");
 
   const handleSubmit = async () => {
-    // const res = await axios.post('/api/submit', {})
-    console.log({
+    const res = await axios.post('/api/submit', {
       username: "Kenny",
       date: new Date(),
-      entry,
-      entryTitle,
+      entry: "static test entry",
+      entryTitle: "static entry title",
       emotionalRating: emotion,
     });
+    // console.log({
+    //   username: "Kenny",
+    //   date: new Date(),
+    //   entry: "static test entry",
+    //   entryTitle: "static entry title",
+    //   emotionalRating: emotion,
+    // });
   };
 
   return (
@@ -37,64 +53,55 @@ export default function EmoApp() {
         <img
           src={Happiest}
           alt="Happiest Face"
-          height="50px"
-          width="50px"
+          style={smallEmoji}
           onClick={setEmotion.setHappiest}
         />
         <img
           src={Beaming}
           alt="Beaming Face"
-          height="100px"
-          width="100px"
+          style={bigEmoji}
           onClick={setEmotion.setBeaming}
         />
         <img
           src={SlightlyHappier}
           alt="Slightly Happier Face"
-          height="50px"
-          width="50px"
+          style={smallEmoji}
           onClick={setEmotion.setSlightlyHappier}
         />
         <img
           src={Smiling}
           alt="Smiling Face"
-          height="100px"
-          width="100px"
+          style={bigEmoji}
           onClick={setEmotion.setSmiling}
         />
         <img
           src={Neutral}
           alt="Neutral Face"
-          height="100px"
-          width="100px"
+          style={smallEmoji}
           onClick={setEmotion.setNeutral}
         />
         <img
           src={Unamused}
           alt="Unamused Face"
-          height="100px"
-          width="100px"
+          style={bigEmoji}
           onClick={setEmotion.setUnamused}
         />
         <img
           src={Anxious}
           alt="Anxious Face"
-          height="50px"
-          width="50px"
+          style={smallEmoji}
           onClick={setEmotion.setAnxious}
         />
         <img
           src={Sad}
           alt="Sad Face"
-          height="100px"
-          width="100px"
+          style={bigEmoji}
           onClick={setEmotion.setSad}
         />
         <img
           src={Crying}
           alt="Crying Face"
-          height="50px"
-          width="50px"
+          style={smallEmoji}
           onClick={setEmotion.setCrying}
         />
       </div>
