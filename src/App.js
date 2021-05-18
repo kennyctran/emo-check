@@ -1,9 +1,14 @@
-import * as React from "react";
+import React, { useState } from "react";
 import EmoApp from "./components/EmoApp";
 import History from "./components/History";
+import Greeting from "./components/Greeting";
+import Home from "./components/Home";
+import Clock from "./components/Clock";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function App() {
+  // TODO: Add state to keep track of time of day for theme?
+
   return (
     <Router>
       <div>
@@ -22,7 +27,11 @@ export default function App() {
       <div>
         <Switch>
           <Route exact path="/">
-            <EmoApp />
+            <Home>
+              <Greeting />
+              <Clock />
+              <EmoApp />
+            </Home>
           </Route>
           <Route path="/history">
             <History />
