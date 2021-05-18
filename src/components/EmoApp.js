@@ -31,13 +31,19 @@ export default function EmoApp() {
   const [entryTitle, setEntryTitle] = useState("");
 
   const handleSubmit = async () => {
-    const res = await axios.post("/api/submit", {
-      username: "Test username",
-      date: new Date(),
-      entry: "static test entry",
-      entryTitle: "static entry title",
-      emotionalRating: emotion,
-    });
+    // This confirms that we can send a request
+    // const res = await axios.post("/api/submit", {
+    //   username: "Test username",
+    //   date: new Date(),
+    //   entry: "static test entry",
+    //   entryTitle: "static entry title",
+    //   emotionalRating: emotion,
+    // });
+    alert('Request sent')
+    // Step 1: Change screen to loading
+    // Step 2: Send post request
+    // Step 3: empty state
+    // Step 4: Display thank you page?
   };
 
   return (
