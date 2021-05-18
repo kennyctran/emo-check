@@ -13,6 +13,7 @@ import useEmotionSelector from "../custom/useEmotionSelector";
 import axios from "axios";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
+import Grid from "@material-ui/core/Grid";
 
 const bigEmoji = {
   height: "100px",
@@ -48,7 +49,7 @@ export default function EmoApp() {
 
   return (
     <div>
-      <div>
+      <Grid container alignItems="center">
         <img
           src={Happiest}
           alt="Happiest Face"
@@ -103,38 +104,54 @@ export default function EmoApp() {
           style={smallEmoji}
           onClick={setEmotion.setCrying}
         />
-      </div>
+      </Grid>
       <form>
-        {/* <label for="entryBody"></label>
+        <Grid container justify="center">
+          {/* <label for="entryBody"></label>
         <textarea id="entryBody" name="entryBody"></textarea> */}
-        <TextField
-          variant="outlined"
-          autoComplete="false"
-          multiline={true}
-          size="medium"
-          type="textarea"
-          label="entry"
-          name="entry"
-          placeholder="entry"
-          helperText="entry"
-          value={entry}
-          onChange={(e) => setEntry(e.target.value)}
-        />
-        {/* <label for="entryTitle"></label>
-        <input type="text" id="entryTitle" name="entryTitle"></input> */}
-        <TextField
-          variant="outlined"
-          autoComplete="false"
-          helperText="Entry Title"
-          label="entryTitle"
-          name="entryTitle"
-          placeholder="Entry Title"
-          value={entryTitle}
-          onChange={(e) => setEntryTitle(e.target.value)}
-        />
-        <Fab variant="extended" onClick={handleSubmit}>
-          Submit Emo
-        </Fab>
+          <Grid item xs={5}>
+            <TextField
+              variant="outlined"
+              autoComplete="false"
+              multiline={true}
+              rows={8}
+              fullWidth={true}
+              size="medium"
+              type="textarea"
+              label="entry"
+              name="entry"
+              placeholder="entry"
+              helperText="entry"
+              value={entry}
+              onChange={(e) => setEntry(e.target.value)}
+            />
+          </Grid>
+        <div className="spacer" style={{ width: "100px" }}></div>
+          <div>
+            <Grid
+              item
+              xs={12}
+              container
+              direction="column"
+              justify="space-between"
+            >
+              <TextField
+                variant="outlined"
+                autoComplete="false"
+                helperText="Entry Title"
+                label="entryTitle"
+                name="entryTitle"
+                placeholder="Entry Title"
+                value={entryTitle}
+                onChange={(e) => setEntryTitle(e.target.value)}
+                fullWidth={true}
+              />
+              <Fab variant="extended" onClick={handleSubmit}>
+                Submit Emo
+              </Fab>
+            </Grid>
+          </div>
+        </Grid>
       </form>
     </div>
   );
