@@ -4,6 +4,7 @@ import axios from "axios";
 import createChartData from "../helpers/createChartData";
 import ViewEntries from "./ViewEntries";
 import { isEmpty } from "lodash";
+import Grid from "@material-ui/core/Grid";
 
 const defaultData = {
   labels: [],
@@ -43,12 +44,19 @@ export default function History() {
     })("Test username");
   }, []);
   return (
-    <div>
-      <Line data={chartData} options={options} />
-      {!isEmpty(accordionData) &&
-        accordionData.ratings.map((rating, i) => {
-          return <ViewEntries key={i} accordionData={rating} />;
-        })}
+    <div style={{ width: "95vw" }}>
+      <Grid container direction="row" justify="center">
+        <Grid item xs={6}>
+          <Line data={chartData} options={options} />
+        </Grid>
+        <div className="spacer" style={{ width: "2rem", "max-width": "100px"}}></div>
+        <Grid item xs={5} container direction="column">
+          {!isEmpty(accordionData) &&
+            accordionData.ratings.map((rating, i) => {
+              return <ViewEntries key={i} accordionData={rating} />;
+            })}
+        </Grid>
+      </Grid>
     </div>
   );
 }

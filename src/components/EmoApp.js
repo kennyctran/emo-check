@@ -126,7 +126,7 @@ export default function EmoApp() {
               onChange={(e) => setEntry(e.target.value)}
             />
           </Grid>
-        <div className="spacer" style={{ width: "100px" }}></div>
+          <div className="spacer" style={{ width: "100px" }}></div>
           <div>
             <Grid
               item
