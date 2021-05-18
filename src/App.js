@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import EmoApp from "./components/EmoApp";
 import History from "./components/History";
 import Greeting from "./components/Greeting";
-import useName from "./custom/useName";
 import Home from "./components/Home";
+import Clock from "./components/Clock";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function App() {
-  // Add state to keep track of time of day
-  // Add state to determine message to send to Greeting
-  const [message, setMessage] = useState("Hello, ");
-  const name = useName();
+  // TODO: Add state to keep track of time of day for theme?
 
   return (
     <Router>
@@ -31,7 +28,8 @@ export default function App() {
         <Switch>
           <Route exact path="/">
             <Home>
-              <Greeting message={message + name} />
+              <Greeting />
+              <Clock />
               <EmoApp />
             </Home>
           </Route>
