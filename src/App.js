@@ -4,6 +4,7 @@ import History from "./components/History";
 import Greeting from "./components/Greeting";
 import Home from "./components/Home";
 import Clock from "./components/Clock";
+import Grid from "@material-ui/core/Grid";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default function App() {
@@ -27,11 +28,18 @@ export default function App() {
       <div>
         <Switch>
           <Route exact path="/">
-            <Home>
-              <Greeting />
-              <Clock />
-              <EmoApp />
-            </Home>
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+            >
+              <Home>
+                <Greeting />
+                <Clock />
+                <EmoApp />
+              </Home>
+            </Grid>
           </Route>
           <Route path="/history">
             <History />
