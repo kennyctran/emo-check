@@ -5,50 +5,65 @@ import createChartData from "../helpers/createChartData";
 import ViewEntries from "./ViewEntries";
 import { isEmpty } from "lodash";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
-const defaultData = {
-  labels: [],
-  datasets: [
-    {
-      label: "Emotional Rating",
-      data: [],
-      fill: false,
-      backgroundColor: "rgb(255, 99, 132)",
-      borderColor: "rgba(255, 99, 132, 0.2)",
-    },
-  ],
-};
-const options = {
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-        },
-      },
-    ],
+const useStyles = makeStyles({
+  chart: {
+    position: "sticky",
   },
-};
+});
+
+// const defaultData = {
+//   labels: [],
+//   datasets: [
+//     {
+//       label: "Emotional Rating",
+//       data: [],
+//       fill: true,
+//       backgroundColor: "rgb(255, 99, 132)",
+//       borderColor: "rgba(255, 99, 132, 0.2)",
+//     },
+//   ],
+// };
+// const options = {
+//   scales: {
+//     yAxes: [
+//       {
+//         ticks: {
+//           beginAtZero: true,
+//         },
+//       },
+//     ],
+//   },
+// };
 
 export default function History() {
   const [chartData, setChartData] = useState({});
   const [accordionData, setAccordionData] = useState({});
 
-  useEffect(() => {
-    (async (username) => {
-      const { data } = await axios.get("/api/history", {
-        params: { username },
-      });
-      setAccordionData(data);
-      setChartData(createChartData(data));
-    })("Test username");
-  }, []);
+  const handleMonth = async (username) => {
+    const { data } = await axios.get("/api/history", {
+      params: { username: "kenny" },
+    });
+    setAccordionData(data);
+    setChartData(createChartData(data));
+  };
+  const handleWeek = async () => {
+    alert("We out here fetching the current week");
+  };
+
   return (
     <div style={{ width: "95vw" }}>
       <div className="spacer" style={{ height: "40px" }}></div>
+      <Grid container justify="center">
+        <Button onClick={handleMonth}>View Month</Button>
+        <Button onClick={handleWeek}>View Current Week</Button>
+      </Grid>
+      <hr />
       <Grid container direction="row" justify="center">
         <Grid item xs={6}>
-          <Line data={chartData} options={options} />
+          <Line data={chartData} />
         </Grid>
         <div
           className="spacer"
