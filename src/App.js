@@ -10,36 +10,42 @@ import Nav from "./components/Nav";
 import {
   createMuiTheme,
   responsiveFontSizes,
-  ThemeProvider,
+  MuiThemeProvider,
 } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Indigo from "@material-ui/core/colors/Indigo";
+import blueGrey from "@material-ui/core/colors/blueGrey";
+import Blue from "@material-ui/core/colors/Blue";
 
-const theme = createMuiTheme({
+let theme = createMuiTheme({
   typography: {
     fontFamily: ["Darker Grotesque", "Open Sans", "sans-serif"],
   },
-  // props: {
-  //   MuiTypography: {
-  //     variantMapping: {
-  //       h1: "h1",
-  //       h2: "h2",
-  //       h3: "h3",
-  //       h4: "h4",
-  //       h5: "h5",
-  //       h6: "h6",
-  //       subtitle1: "span",
-  //       subtitle2: "span",
-  //       body1: "p",
-  //       body2: "p",
-  //     },
-  //   },
-  // },
+  palette: {
+    primary: {
+      main: Blue[100],
+      light: Blue[50],
+      dark: Blue[300],
+    },
+    secondary: {
+      main: blueGrey[50],
+      light: "#ffffff",
+      dark: blueGrey[200],
+    },
+    background: {
+      default: Indigo[500],
+    },
+  },
 });
+
+theme = responsiveFontSizes(theme);
 
 export default function App() {
   // TODO: Add state to keep track of time of day for theme?
   return (
     <Router>
-      <ThemeProvider theme={theme}>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
         <Grid container justify="flex-end">
           <Nav />
           <div style={{ width: "30px" }}>{""}</div>
@@ -67,7 +73,7 @@ export default function App() {
             </Route>
           </Switch>
         </Grid>
-      </ThemeProvider>
+      </MuiThemeProvider>
     </Router>
   );
 }

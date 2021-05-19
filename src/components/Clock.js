@@ -17,6 +17,7 @@ const useStyles = makeStyles({
   },
   time: {
     width: "50%",
+    fontWeight: "400",
   },
 });
 
@@ -28,7 +29,7 @@ export default function Clock() {
       <div className={classes.timeContainer}>
         <div className={classes.timeSpacer + " spacer"}></div>
         <Grid container justify="center">
-          <Typography className={classes.time} variant="h2">
+          <Typography color="secondary" className={classes.time} variant="h2">
             {time.slice(0, 8)}
           </Typography>
         </Grid>

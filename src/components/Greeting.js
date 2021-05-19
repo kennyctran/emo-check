@@ -16,7 +16,7 @@ export default function Greeting() {
   const classes = useStyles();
   return (
     <Grid container justify="center">
-      <Typography variant="h1" className={classes.root}>
+      <Typography variant="h1" color="secondary" className={classes.root}>
         {message + name}
       </Typography>
     </Grid>
