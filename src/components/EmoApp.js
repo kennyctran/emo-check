@@ -19,19 +19,16 @@ import AddRoundedIcon from "@material-ui/icons/AddRounded";
 
 const useStyles = makeStyles((theme) => {
   return {
-    smallEmoji: {
+    emoji: {
       height: "auto",
       width: "10%",
       "min-height": "50px",
       cursor: "pointer",
       "border-radius": "50%",
-    },
-    bigEmoji: {
-      height: "auto",
-      width: "10%",
-      "min-height": "50px",
-      cursor: "pointer",
-      "border-radius": "50%",
+      transition: "all 0.1s ease",
+      "&:hover": {
+        transform: "scale(1.5)",
+      },
     },
     divider: {
       height: "20px",
@@ -53,17 +50,21 @@ export default function EmoApp() {
   const classes = useStyles();
 
   const handleSubmit = async () => {
-    await axios.post("/api/submit", {
-      username: "kenny",
-      date: new Date(),
-      entry,
-      entryTitle,
-      emotionalRating: emotion,
-    });
-    // Step 1: Change screen to loading
-    setEmotion.setNeutral();
-    setEntry("");
-    setEntryTitle("");
+    if (entryTitle) {
+      await axios.post("/api/submit", {
+        username: "kenny",
+        date: new Date(),
+        entry,
+        entryTitle,
+        emotionalRating: emotion,
+      });
+      // Step 1: Change screen to loading
+      setEmotion.setNeutral();
+      setEntry("");
+      setEntryTitle("");
+    } else {
+      alert("Must include a title");
+    }
     // Step 4: Display thank you page?
   };
 
@@ -73,55 +74,55 @@ export default function EmoApp() {
         <img
           src={Happiest}
           alt="Happiest Face"
-          className={classes.smallEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setHappiest}
         />
         <img
           src={Beaming}
           alt="Beaming Face"
-          className={classes.bigEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setBeaming}
         />
         <img
           src={SlightlyHappier}
           alt="Slightly Happier Face"
-          className={classes.smallEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setSlightlyHappier}
         />
         <img
           src={Smiling}
           alt="Smiling Face"
-          className={classes.bigEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setSmiling}
         />
         <img
           src={Neutral}
           alt="Neutral Face"
-          className={classes.smallEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setNeutral}
         />
         <img
           src={Unamused}
           alt="Unamused Face"
-          className={classes.bigEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setUnamused}
         />
         <img
           src={Anxious}
           alt="Anxious Face"
-          className={classes.smallEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setAnxious}
         />
         <img
           src={Sad}
           alt="Sad Face"
-          className={classes.bigEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setSad}
         />
         <img
           src={Crying}
           alt="Crying Face"
-          className={classes.smallEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setCrying}
         />
       </Grid>
