@@ -25,27 +25,29 @@ export default function App() {
 
       <hr />
 
-      <div>
+      <Grid container justify="center">
         <Switch>
           <Route exact path="/">
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
-            >
-              <Home>
-                <Greeting />
-                <Clock />
-                <EmoApp />
-              </Home>
-            </Grid>
+            <div className="Home-Container" style={{ width: "65vw" }}>
+              <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="center"
+              >
+                <Home>
+                  <Greeting />
+                  <Clock />
+                  <EmoApp />
+                </Home>
+              </Grid>
+            </div>
           </Route>
           <Route path="/history">
             <History />
           </Route>
         </Switch>
-      </div>
+      </Grid>
     </Router>
   );
 }

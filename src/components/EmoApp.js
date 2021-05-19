@@ -14,6 +14,7 @@ import axios from "axios";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
 
 const bigEmoji = {
   height: "100px",
@@ -25,11 +26,29 @@ const smallEmoji = {
   width: "50px",
 };
 
+const useStyles = makeStyles({
+  smallEmoji: {
+    height: "2rem",
+    width: "2rem",
+    "max-height": "40px",
+    cursor: "pointer",
+    "border-radius": "50%",
+  },
+  bigEmoji: {
+    height: "5rem",
+    width: "5rem",
+    "max-height": "90px",
+    cursor: "pointer",
+    "border-radius": "50%",
+  },
+});
+
 export default function EmoApp() {
   // Will need to handle grabbing username
   const [emotion, setEmotion] = useEmotionSelector(5);
   const [entry, setEntry] = useState("");
   const [entryTitle, setEntryTitle] = useState("");
+  const classes = useStyles();
 
   const handleSubmit = async () => {
     // This confirms that we can send a request
@@ -48,54 +67,62 @@ export default function EmoApp() {
   };
 
   return (
-    <div>
-      <Grid container alignItems="center">
+    <div className="Emotion-Container" style={{ "min-width": "100%" }}>
+      <Grid container alignItems="center" justify="space-around">
         <img
           src={Happiest}
           alt="Happiest Face"
-          style={smallEmoji}
+          // style={smallEmoji}
+          className={classes.smallEmoji}
           onClick={setEmotion.setHappiest}
         />
         <img
           src={Beaming}
           alt="Beaming Face"
-          style={bigEmoji}
+          // style={bigEmoji}
+          className={classes.bigEmoji}
           onClick={setEmotion.setBeaming}
         />
         <img
           src={SlightlyHappier}
           alt="Slightly Happier Face"
-          style={smallEmoji}
+          // style={smallEmoji}
+          className={classes.smallEmoji}
           onClick={setEmotion.setSlightlyHappier}
         />
         <img
           src={Smiling}
           alt="Smiling Face"
-          style={bigEmoji}
+          // style={bigEmoji}
+          className={classes.bigEmoji}
           onClick={setEmotion.setSmiling}
         />
         <img
           src={Neutral}
           alt="Neutral Face"
-          style={smallEmoji}
+          // style={smallEmoji}
+          className={classes.smallEmoji}
           onClick={setEmotion.setNeutral}
         />
         <img
           src={Unamused}
           alt="Unamused Face"
-          style={bigEmoji}
+          // style={bigEmoji}
+          className={classes.bigEmoji}
           onClick={setEmotion.setUnamused}
         />
         <img
           src={Anxious}
           alt="Anxious Face"
-          style={smallEmoji}
+          // style={smallEmoji}
+          className={classes.smallEmoji}
           onClick={setEmotion.setAnxious}
         />
         <img
           src={Sad}
           alt="Sad Face"
-          style={bigEmoji}
+          // style={bigEmoji}
+          className={classes.bigEmoji}
           onClick={setEmotion.setSad}
         />
         <img
@@ -126,7 +153,7 @@ export default function EmoApp() {
               onChange={(e) => setEntry(e.target.value)}
             />
           </Grid>
-          <div className="spacer" style={{ width: "100px" }}></div>
+          <div className="spacer" style={{ width: "80px" }}></div>
           <div>
             <Grid
               item
