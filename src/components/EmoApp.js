@@ -15,7 +15,7 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import AddRoundedIcon from "@material-ui/icons/AddRounded";
 
 const useStyles = makeStyles({
   smallEmoji: {
