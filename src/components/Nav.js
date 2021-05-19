@@ -2,38 +2,44 @@ import React from "react";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
-import CalendarTodayRoundedIcon from "@material-ui/icons/CalendarTodayRounded";
+// import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
+// import CalendarTodayRoundedIcon from "@material-ui/icons/CalendarTodayRounded";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
-const useStyles = makeStyles({
-  link: {
-    display: "flex",
-    alignItems: "center",
-    color: "black",
-    textDecoration: "none",
-    "&:visited": {
-      color: "purple",
+const useStyles = makeStyles((theme) => {
+  return {
+    link: {
+      color: theme.palette.secondary.main,
+      fontSize: "0.8rem",
+      display: "flex",
+      alignItems: "center",
+      textDecoration: "none",
+      transition: "all 0.1s ease",
+      "&:hover": {
+        color: theme.palette.primary.dark,
+      },
     },
-    "&:hover": {
-      color: "blue",
+    icon: {
+      fontSize: "1.2rem",
+      padding: "5px",
     },
-  },
-  icon: {
-    padding: "5px",
-  },
+  };
 });
 
 export default function Nav() {
   const classes = useStyles();
   return (
-    <Breadcrumbs aria-label="breadcrumb">
+    <Breadcrumbs color="secondary" aria-label="breadcrumb">
       <RouterLink to="/" className={classes.link}>
-        <HomeRoundedIcon className={classes.icon} />
-        home
+        <Grid container>
+          {/* <HomeRoundedIcon className={classes.icon} /> */}
+          <Typography>home</Typography>
+        </Grid>
       </RouterLink>
       <RouterLink to="/history" className={classes.link}>
-        <CalendarTodayRoundedIcon className={classes.icon} />
-        history
+        {/* <CalendarTodayRoundedIcon className={classes.icon} /> */}
+        <Typography>history</Typography>
       </RouterLink>
     </Breadcrumbs>
   );
