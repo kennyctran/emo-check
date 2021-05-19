@@ -5,26 +5,18 @@ import Greeting from "./components/Greeting";
 import Home from "./components/Home";
 import Clock from "./components/Clock";
 import Grid from "@material-ui/core/Grid";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Nav from "./components/Nav";
 
 export default function App() {
   // TODO: Add state to keep track of time of day for theme?
 
   return (
     <Router>
-      <div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/history">History</Link>
-          </li>
-        </ul>
-      </div>
-
-      <hr />
-
+      <Grid container justify="flex-end">
+        <Nav />
+        <div style={{ width: "30px" }}>{""}</div>
+      </Grid>
       <Grid container justify="center">
         <Switch>
           <Route exact path="/">

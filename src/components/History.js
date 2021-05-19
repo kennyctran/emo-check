@@ -45,6 +45,7 @@ export default function History() {
   }, []);
   return (
     <div style={{ width: "95vw" }}>
+      <div className="spacer" style={{ height: "40px" }}></div>
       <Grid container direction="row" justify="center">
         <Grid item xs={6}>
           <Line data={chartData} options={options} />
