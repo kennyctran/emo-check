@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import useName from "../custom/useName";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+
+const useStyles = makeStyles({
+  root: {
+    margin: 0,
+  },
+});
 
 export default function Greeting() {
   const [message] = useState("Hello, ");
   const name = useName();
+  const classes = useStyles();
   return (
     <Grid container justify="center">
-      <h1>{message + name}</h1>
+      <Typography variant="h1" className={classes.root}>
+        {message + name}
+      </Typography>
     </Grid>
   );
 }
