@@ -8,28 +8,38 @@ import Happiest from "../images/Happiest.svg";
 import SlightlyHappier from "../images/SlightlyHappier.svg";
 import Anxious from "../images/Anxious.svg";
 import Crying from "../images/Crying.svg";
-import { TextField, Fab } from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import useEmotionSelector from "../custom/useEmotionSelector";
 import axios from "axios";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
 
-const bigEmoji = {
-  height: "100px",
-  width: "100px",
-};
-
-const smallEmoji = {
-  height: "50px",
-  width: "50px",
-};
+const useStyles = makeStyles({
+  smallEmoji: {
+    height: "2rem",
+    width: "2rem",
+    "max-height": "40px",
+    cursor: "pointer",
+    "border-radius": "50%",
+  },
+  bigEmoji: {
+    height: "5rem",
+    width: "5rem",
+    "max-height": "90px",
+    cursor: "pointer",
+    "border-radius": "50%",
+  },
+});
 
 export default function EmoApp() {
   // Will need to handle grabbing username
   const [emotion, setEmotion] = useEmotionSelector(5);
   const [entry, setEntry] = useState("");
   const [entryTitle, setEntryTitle] = useState("");
+  const classes = useStyles();
 
   const handleSubmit = async () => {
     // This confirms that we can send a request
@@ -48,65 +58,65 @@ export default function EmoApp() {
   };
 
   return (
-    <div>
-      <Grid container alignItems="center">
+    <div className="Emotion-Container" style={{ minWidth: "100%" }}>
+      <Grid container alignItems="center" justify="space-around" wrap="nowrap">
         <img
           src={Happiest}
           alt="Happiest Face"
-          style={smallEmoji}
+          className={classes.smallEmoji}
           onClick={setEmotion.setHappiest}
         />
         <img
           src={Beaming}
           alt="Beaming Face"
-          style={bigEmoji}
+          className={classes.bigEmoji}
           onClick={setEmotion.setBeaming}
         />
         <img
           src={SlightlyHappier}
           alt="Slightly Happier Face"
-          style={smallEmoji}
+          className={classes.smallEmoji}
           onClick={setEmotion.setSlightlyHappier}
         />
         <img
           src={Smiling}
           alt="Smiling Face"
-          style={bigEmoji}
+          className={classes.bigEmoji}
           onClick={setEmotion.setSmiling}
         />
         <img
           src={Neutral}
           alt="Neutral Face"
-          style={smallEmoji}
+          className={classes.smallEmoji}
           onClick={setEmotion.setNeutral}
         />
         <img
           src={Unamused}
           alt="Unamused Face"
-          style={bigEmoji}
+          className={classes.bigEmoji}
           onClick={setEmotion.setUnamused}
         />
         <img
           src={Anxious}
           alt="Anxious Face"
-          style={smallEmoji}
+          className={classes.smallEmoji}
           onClick={setEmotion.setAnxious}
         />
         <img
           src={Sad}
           alt="Sad Face"
-          style={bigEmoji}
+          className={classes.bigEmoji}
           onClick={setEmotion.setSad}
         />
         <img
           src={Crying}
           alt="Crying Face"
-          style={smallEmoji}
+          className={classes.smallEmoji}
           onClick={setEmotion.setCrying}
         />
       </Grid>
       <form>
-        <Grid container justify="center">
+        <Grid container justify="center" wrap="nowrap">
           {/* <label for="entryBody"></label>
         <textarea id="entryBody" name="entryBody"></textarea> */}
           <Grid item xs={5}>
@@ -126,7 +136,7 @@ export default function EmoApp() {
               onChange={(e) => setEntry(e.target.value)}
             />
           </Grid>
-          <div className="spacer" style={{ width: "100px" }}></div>
+          <div className="spacer" style={{ width: "80px" }}></div>
           <div>
             <Grid
               item
@@ -146,9 +156,15 @@ export default function EmoApp() {
                 onChange={(e) => setEntryTitle(e.target.value)}
                 fullWidth={true}
               />
-              <Fab variant="extended" onClick={handleSubmit}>
+              <div style={{ height: "30px" }}>{""}</div>
+              <Button
+                startIcon={<AddRoundedIcon />}
+                size="large"
+                onClick={handleSubmit}
+                variant="outlined"
+              >
                 Submit Emo
-              </Fab>
+              </Button>
             </Grid>
           </div>
         </Grid>

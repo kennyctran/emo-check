@@ -49,7 +49,10 @@ export default function History() {
         <Grid item xs={6}>
           <Line data={chartData} options={options} />
         </Grid>
-        <div className="spacer" style={{ width: "2rem", "max-width": "100px"}}></div>
+        <div
+          className="spacer"
+          style={{ width: "2rem", "max-width": "100px" }}
+        ></div>
         <Grid item xs={5} container direction="column">
           {!isEmpty(accordionData) &&
             accordionData.ratings.map((rating, i) => {
