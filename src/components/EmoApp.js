@@ -43,17 +43,18 @@ export default function EmoApp() {
 
   const handleSubmit = async () => {
     // This confirms that we can send a request
-    // const res = await axios.post("/api/submit", {
-    //   username: "Test username",
-    //   date: new Date(),
-    //   entry: "static test entry",
-    //   entryTitle: "static entry title",
-    //   emotionalRating: emotion,
-    // });
-    alert("Request sent");
+    await axios.post("/api/submit", {
+      username: "kenny",
+      date: new Date(),
+      entry,
+      entryTitle,
+      emotionalRating: emotion,
+    });
+    // alert("Request sent");
     // Step 1: Change screen to loading
-    // Step 2: Send post request
-    // Step 3: empty state
+    setEmotion.setNeutral();
+    setEntry("");
+    setEntryTitle("");
     // Step 4: Display thank you page?
   };
 
@@ -117,8 +118,6 @@ export default function EmoApp() {
       </Grid>
       <form>
         <Grid container justify="center" wrap="nowrap">
-          {/* <label for="entryBody"></label>
-        <textarea id="entryBody" name="entryBody"></textarea> */}
           <Grid item xs={5}>
             <TextField
               variant="outlined"
