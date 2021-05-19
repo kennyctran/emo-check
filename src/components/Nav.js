@@ -2,9 +2,13 @@ import React from "react";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import CalendarTodayRoundedIcon from '@material-ui/icons/CalendarTodayRounded';
 
 const useStyles = makeStyles({
   link: {
+    display: "flex",
+    alignItems: "center",
     color: "black",
     textDecoration: "none",
     "&:visited": {
@@ -14,6 +18,9 @@ const useStyles = makeStyles({
       color: "blue",
     },
   },
+  icon: {
+    padding: "5px",
+  },
 });
 
 export default function Nav() {
@@ -21,10 +28,12 @@ export default function Nav() {
   return (
     <Breadcrumbs aria-label="breadcrumb">
       <RouterLink to="/" className={classes.link}>
-        Home
+        <HomeRoundedIcon className={classes.icon} />
+        home
       </RouterLink>
       <RouterLink to="/history" className={classes.link}>
-        History
+        <CalendarTodayRoundedIcon className={classes.icon} />
+        history
       </RouterLink>
     </Breadcrumbs>
   );
