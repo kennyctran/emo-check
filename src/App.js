@@ -16,6 +16,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Indigo from "@material-ui/core/colors/Indigo";
 import blueGrey from "@material-ui/core/colors/blueGrey";
 import Blue from "@material-ui/core/colors/Blue";
+import Grey from "@material-ui/core/colors/Grey";
 
 let theme = createMuiTheme({
   typography: {
@@ -23,9 +24,9 @@ let theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: Indigo[200],
-      light: Indigo[50],
-      dark: Indigo[400],
+      main: Grey[600],
+      light: Grey[100],
+      dark: Grey[900],
     },
     secondary: {
       main: blueGrey[50],
@@ -33,7 +34,7 @@ let theme = createMuiTheme({
       dark: blueGrey[200],
     },
     background: {
-      default: Indigo[500],
+      default: Blue[200],
     },
   },
 });

@@ -10,14 +10,14 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) => {
   return {
     link: {
-      color: theme.palette.secondary.main,
+      color: theme.palette.primary.main,
       fontSize: "0.8rem",
       display: "flex",
       alignItems: "center",
       textDecoration: "none",
       transition: "all 0.1s ease",
       "&:hover": {
-        color: theme.palette.primary.main,
+        color: theme.palette.secondary.light,
       },
     },
     icon: {

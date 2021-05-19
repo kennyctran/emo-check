@@ -15,6 +15,8 @@ export default function createChartData({ ratings }) {
       {
         label: "Emotional Rating",
         data,
+        color: "#fff",
+        backgroundColor: "#fff",
       },
     ],
   };
