@@ -42,7 +42,6 @@ export default function EmoApp() {
   const classes = useStyles();
 
   const handleSubmit = async () => {
-    // This confirms that we can send a request
     await axios.post("/api/submit", {
       username: "kenny",
       date: new Date(),
@@ -50,7 +49,6 @@ export default function EmoApp() {
       entryTitle,
       emotionalRating: emotion,
     });
-    // alert("Request sent");
     // Step 1: Change screen to loading
     setEmotion.setNeutral();
     setEntry("");
@@ -123,14 +121,16 @@ export default function EmoApp() {
               variant="outlined"
               autoComplete="false"
               multiline={true}
-              rows={8}
+              rows={6}
+              rowsMax={6}
               fullWidth={true}
-              size="medium"
               type="textarea"
-              label="entry"
+              size="medium"
+              id="entry"
+              type="textarea"
               name="entry"
-              placeholder="entry"
-              helperText="entry"
+              placeholder="What's going on?"
+              aria-label="entry"
               value={entry}
               onChange={(e) => setEntry(e.target.value)}
             />
@@ -147,10 +147,10 @@ export default function EmoApp() {
               <TextField
                 variant="outlined"
                 autoComplete="false"
-                helperText="Entry Title"
-                label="entryTitle"
+                aria-label="entryTitle"
+                id="entryTitle"
                 name="entryTitle"
-                placeholder="Entry Title"
+                placeholder="Main Focus?"
                 value={entryTitle}
                 onChange={(e) => setEntryTitle(e.target.value)}
                 fullWidth={true}
@@ -162,7 +162,7 @@ export default function EmoApp() {
                 onClick={handleSubmit}
                 variant="outlined"
               >
-                Submit Emo
+                Log Emo-Check
               </Button>
             </Grid>
           </div>
