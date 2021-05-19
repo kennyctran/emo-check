@@ -17,21 +17,29 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 
-const useStyles = makeStyles({
-  smallEmoji: {
-    height: "2rem",
-    width: "2rem",
-    "max-height": "40px",
-    cursor: "pointer",
-    "border-radius": "50%",
-  },
-  bigEmoji: {
-    height: "5rem",
-    width: "5rem",
-    "max-height": "90px",
-    cursor: "pointer",
-    "border-radius": "50%",
-  },
+const useStyles = makeStyles((theme) => {
+  return {
+    emoji: {
+      height: "auto",
+      width: "10%",
+      "min-height": "50px",
+      cursor: "pointer",
+      "border-radius": "50%",
+      transition: "all 0.1s ease",
+      "&:hover": {
+        transform: "scale(1.5)",
+      },
+    },
+    divider: {
+      height: "20px",
+    },
+    emotionContainer: {
+      width: "70%",
+      backgroundColor: theme.palette.primary.dark,
+      borderRadius: "15px",
+      boxShadow: `3px 1px 10px 20px ${theme.palette.primary.dark}`,
+    },
+  };
 });
 
 export default function EmoApp() {
@@ -42,80 +50,83 @@ export default function EmoApp() {
   const classes = useStyles();
 
   const handleSubmit = async () => {
-    // This confirms that we can send a request
-    await axios.post("/api/submit", {
-      username: "kenny",
-      date: new Date(),
-      entry,
-      entryTitle,
-      emotionalRating: emotion,
-    });
-    // alert("Request sent");
-    // Step 1: Change screen to loading
-    setEmotion.setNeutral();
-    setEntry("");
-    setEntryTitle("");
+    if (entryTitle) {
+      await axios.post("/api/submit", {
+        username: "kenny",
+        date: new Date(),
+        entry,
+        entryTitle,
+        emotionalRating: emotion,
+      });
+      // Step 1: Change screen to loading
+      setEmotion.setNeutral();
+      setEntry("");
+      setEntryTitle("");
+    } else {
+      alert("Must include a title");
+    }
     // Step 4: Display thank you page?
   };
 
   return (
-    <div className="Emotion-Container" style={{ minWidth: "100%" }}>
+    <div className={classes.emotionContainer}>
       <Grid container alignItems="center" justify="space-around" wrap="nowrap">
         <img
           src={Happiest}
           alt="Happiest Face"
-          className={classes.smallEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setHappiest}
         />
         <img
           src={Beaming}
           alt="Beaming Face"
-          className={classes.bigEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setBeaming}
         />
         <img
           src={SlightlyHappier}
           alt="Slightly Happier Face"
-          className={classes.smallEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setSlightlyHappier}
         />
         <img
           src={Smiling}
           alt="Smiling Face"
-          className={classes.bigEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setSmiling}
         />
         <img
           src={Neutral}
           alt="Neutral Face"
-          className={classes.smallEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setNeutral}
         />
         <img
           src={Unamused}
           alt="Unamused Face"
-          className={classes.bigEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setUnamused}
         />
         <img
           src={Anxious}
           alt="Anxious Face"
-          className={classes.smallEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setAnxious}
         />
         <img
           src={Sad}
           alt="Sad Face"
-          className={classes.bigEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setSad}
         />
         <img
           src={Crying}
           alt="Crying Face"
-          className={classes.smallEmoji}
+          className={classes.emoji}
           onClick={setEmotion.setCrying}
         />
       </Grid>
+      <div className={classes.divider + " spacer"}></div>
       <form>
         <Grid container justify="center" wrap="nowrap">
           <Grid item xs={5}>
@@ -123,14 +134,17 @@ export default function EmoApp() {
               variant="outlined"
               autoComplete="false"
               multiline={true}
-              rows={8}
+              rows={6}
+              rowsMax={6}
               fullWidth={true}
-              size="medium"
               type="textarea"
-              label="entry"
+              size="medium"
+              id="entry"
+              type="textarea"
               name="entry"
-              placeholder="entry"
-              helperText="entry"
+              aria-label="entry"
+              label="What's going on?"
+              color="secondary"
               value={entry}
               onChange={(e) => setEntry(e.target.value)}
             />
@@ -147,13 +161,15 @@ export default function EmoApp() {
               <TextField
                 variant="outlined"
                 autoComplete="false"
-                helperText="Entry Title"
-                label="entryTitle"
+                aria-label="entryTitle"
+                id="entryTitle"
                 name="entryTitle"
-                placeholder="Entry Title"
                 value={entryTitle}
+                label="Main Focus?"
+                required={true}
                 onChange={(e) => setEntryTitle(e.target.value)}
                 fullWidth={true}
+                color="secondary"
               />
               <div style={{ height: "30px" }}>{""}</div>
               <Button
@@ -161,13 +177,15 @@ export default function EmoApp() {
                 size="large"
                 onClick={handleSubmit}
                 variant="outlined"
+                color="secondary"
               >
-                Submit Emo
+                Log Emo-Check
               </Button>
             </Grid>
           </div>
         </Grid>
       </form>
+      <div className={classes.divider + " spacer"}></div>
     </div>
   );
 }

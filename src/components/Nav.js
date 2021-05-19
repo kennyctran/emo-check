@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => {
       textDecoration: "none",
       transition: "all 0.1s ease",
       "&:hover": {
-        color: theme.palette.primary.dark,
+        color: theme.palette.primary.main,
       },
     },
     icon: {
