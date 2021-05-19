@@ -17,21 +17,32 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 
-const useStyles = makeStyles({
-  smallEmoji: {
-    height: "2rem",
-    width: "2rem",
-    "max-height": "40px",
-    cursor: "pointer",
-    "border-radius": "50%",
-  },
-  bigEmoji: {
-    height: "5rem",
-    width: "5rem",
-    "max-height": "90px",
-    cursor: "pointer",
-    "border-radius": "50%",
-  },
+const useStyles = makeStyles((theme) => {
+  return {
+    smallEmoji: {
+      height: "auto",
+      width: "10%",
+      "min-height": "50px",
+      cursor: "pointer",
+      "border-radius": "50%",
+    },
+    bigEmoji: {
+      height: "auto",
+      width: "10%",
+      "min-height": "50px",
+      cursor: "pointer",
+      "border-radius": "50%",
+    },
+    divider: {
+      height: "20px",
+    },
+    emotionContainer: {
+      width: "70%",
+      backgroundColor: theme.palette.primary.dark,
+      borderRadius: "15px",
+      boxShadow: `3px 1px 10px 20px ${theme.palette.primary.dark}`,
+    },
+  };
 });
 
 export default function EmoApp() {
@@ -57,7 +68,7 @@ export default function EmoApp() {
   };
 
   return (
-    <div className="Emotion-Container" style={{ minWidth: "100%" }}>
+    <div className={classes.emotionContainer}>
       <Grid container alignItems="center" justify="space-around" wrap="nowrap">
         <img
           src={Happiest}
@@ -114,6 +125,7 @@ export default function EmoApp() {
           onClick={setEmotion.setCrying}
         />
       </Grid>
+      <div className={classes.divider + " spacer"}></div>
       <form>
         <Grid container justify="center" wrap="nowrap">
           <Grid item xs={5}>
@@ -129,8 +141,9 @@ export default function EmoApp() {
               id="entry"
               type="textarea"
               name="entry"
-              placeholder="What's going on?"
               aria-label="entry"
+              label="What's going on?"
+              color="secondary"
               value={entry}
               onChange={(e) => setEntry(e.target.value)}
             />
@@ -150,10 +163,12 @@ export default function EmoApp() {
                 aria-label="entryTitle"
                 id="entryTitle"
                 name="entryTitle"
-                placeholder="Main Focus?"
                 value={entryTitle}
+                label="Main Focus?"
+                required={true}
                 onChange={(e) => setEntryTitle(e.target.value)}
                 fullWidth={true}
+                color="secondary"
               />
               <div style={{ height: "30px" }}>{""}</div>
               <Button
@@ -161,6 +176,7 @@ export default function EmoApp() {
                 size="large"
                 onClick={handleSubmit}
                 variant="outlined"
+                color="secondary"
               >
                 Log Emo-Check
               </Button>
@@ -168,6 +184,7 @@ export default function EmoApp() {
           </div>
         </Grid>
       </form>
+      <div className={classes.divider + " spacer"}></div>
     </div>
   );
 }

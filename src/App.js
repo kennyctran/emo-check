@@ -23,9 +23,9 @@ let theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: Blue[100],
-      light: Blue[50],
-      dark: Blue[300],
+      main: Indigo[200],
+      light: Indigo[50],
+      dark: Indigo[400],
     },
     secondary: {
       main: blueGrey[50],
@@ -53,7 +53,7 @@ export default function App() {
         <Grid container justify="center">
           <Switch>
             <Route exact path="/">
-              <div className="Home-Container" style={{ width: "65vw" }}>
+              <div className="Home-Container" style={{ width: "70vw" }}>
                 <Grid
                   container
                   direction="column"
@@ -63,6 +63,7 @@ export default function App() {
                   <Home>
                     <Greeting />
                     <Clock />
+                    <div className="spacer" style={{ height: "30px" }}></div>
                     <EmoApp />
                   </Home>
                 </Grid>
