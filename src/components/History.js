@@ -5,14 +5,7 @@ import createChartData from "../helpers/createChartData";
 import ViewEntries from "./ViewEntries";
 import { isEmpty } from "lodash";
 import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-
-const useStyles = makeStyles({
-  chart: {
-    position: "sticky",
-  },
-});
 
 // const defaultData = {
 //   labels: [],
@@ -25,17 +18,6 @@ const useStyles = makeStyles({
 //       borderColor: "rgba(255, 99, 132, 0.2)",
 //     },
 //   ],
-// };
-// const options = {
-//   scales: {
-//     yAxes: [
-//       {
-//         ticks: {
-//           beginAtZero: true,
-//         },
-//       },
-//     ],
-//   },
 // };
 
 export default function History() {
@@ -57,8 +39,13 @@ export default function History() {
     <div style={{ width: "95vw" }}>
       <div className="spacer" style={{ height: "40px" }}></div>
       <Grid container justify="center">
-        <Button onClick={handleMonth}>View Month</Button>
-        <Button onClick={handleWeek}>View Current Week</Button>
+        <Button variant="outlined" color="secondary" onClick={handleMonth}>
+          View Month
+        </Button>
+        <div className="spacer" style={{ width: "10px" }}>{""}</div>
+        <Button variant="outlined" color="secondary" onClick={handleWeek}>
+          View Current Week
+        </Button>
       </Grid>
       <hr />
       <Grid container direction="row" justify="center">
