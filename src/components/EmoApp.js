@@ -35,9 +35,9 @@ const useStyles = makeStyles((theme) => {
     },
     emotionContainer: {
       width: "70%",
-      backgroundColor: theme.palette.primary.dark,
+      backgroundColor: theme.palette.primary.light,
       borderRadius: "15px",
-      boxShadow: `3px 1px 10px 20px ${theme.palette.primary.dark}`,
+      boxShadow: `3px 1px 10px 20px ${theme.palette.primary.light}`,
     },
   };
 });
@@ -144,7 +144,7 @@ export default function EmoApp() {
               name="entry"
               aria-label="entry"
               label="What's going on?"
-              color="secondary"
+              color="primary"
               value={entry}
               onChange={(e) => setEntry(e.target.value)}
             />
@@ -169,7 +169,7 @@ export default function EmoApp() {
                 required={true}
                 onChange={(e) => setEntryTitle(e.target.value)}
                 fullWidth={true}
-                color="secondary"
+                color="primary"
               />
               <div style={{ height: "30px" }}>{""}</div>
               <Button
@@ -177,7 +177,7 @@ export default function EmoApp() {
                 size="large"
                 onClick={handleSubmit}
                 variant="outlined"
-                color="secondary"
+                color="primary"
               >
                 Log Emo-Check
               </Button>
