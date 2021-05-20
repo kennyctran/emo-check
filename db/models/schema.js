@@ -8,7 +8,7 @@ const userSchema = new Schema({
       entry: String,
       entryTitle: String,
       emotionalRating: Number,
-      week: { type: Number, index: true, unique: false },
+      week: { type: String, index: true, unique: false },
     },
   ],
 });

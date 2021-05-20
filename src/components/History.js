@@ -22,6 +22,10 @@ const useStyles = makeStyles((theme) => {
     },
     calendarContainer: {
       width: "30%",
+      position: "absolute",
+      left: "50%",
+      zIndex: 9999,
+      backgroundColor: "rgba(255, 255, 255, .9)",
     },
   };
 });
@@ -65,6 +69,7 @@ export default function History() {
   const [chartData, setChartData] = useState({});
   const [accordionData, setAccordionData] = useState({});
   const [week, setWeek] = useState(() => moment().weeks());
+  const [showCal, setShowCal] = useState(false);
   const classes = useStyles();
 
   const handleMonth = async (username) => {
@@ -76,13 +81,15 @@ export default function History() {
   };
 
   const handleDateChange = (date) => {
-    setWeek(moment(date).weeks());
+    const newWeek = moment(date).weeks();
+    setWeek(newWeek);
+    handleWeek(newWeek);
   };
 
-  const handleWeek = async (weekNumber = moment().weeks()) => {
+  const handleWeek = async (weekNumber, username = "kenny") => {
     try {
       const { data } = await axios.get("/api/week", {
-        params: { username: "kenny", week: weekNumber },
+        params: { username, week: weekNumber },
       });
       setAccordionData(data);
       setChartData(createChartData(data));
@@ -109,16 +116,29 @@ export default function History() {
         >
           View Current Week
         </Button>
+        <div className="spacer" style={{ width: "10px" }}>
+          {""}
+        </div>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => setShowCal((prev) => !prev)}
+        >
+          Toggle Week
+        </Button>
       </Grid>
       <hr />
       <div className={classes.spacer}></div>
-      <div className={classes.calendarContainer}>
-        <Calendar
-          onChange={handleDateChange}
-          maxDate={new Date()}
-          defaultValue={new Date()}
-        />
-      </div>
+      {showCal && (
+        <div className={classes.calendarContainer}>
+          <Calendar
+            onChange={handleDateChange}
+            maxDate={new Date()}
+            defaultValue={new Date()}
+            calendarType="US"
+          />
+        </div>
+      )}
       <Grid container direction="row" justify="center">
         <Grid item xs={6}>
           {!isEmpty(chartData) && (

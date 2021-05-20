@@ -16,6 +16,7 @@ import "regenerator-runtime/runtime";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
+import moment from "moment";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -57,15 +58,8 @@ export default function EmoApp() {
         entry,
         entryTitle,
         emotionalRating: emotion,
+        week: moment().weeks(),
       });
-      // TEST REQUEST
-      // await axios.post("/api/submit", {
-      //   username: "test",
-      //   date: new Date(),
-      //   entry: "This is a test entry",
-      //   entryTitle: "testy",
-      //   emotionalRating: 3,
-      // });
       // Step 1: Change screen to loading
       setEmotion.setNeutral();
       setEntry("");
