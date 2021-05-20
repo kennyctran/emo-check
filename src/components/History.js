@@ -8,6 +8,8 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Grey from "@material-ui/core/colors/Grey";
+import moment from "moment";
+import Calendar from "react-calendar";
 
 const useStyles = makeStyles((theme) => {
   return {
@@ -17,7 +19,14 @@ const useStyles = makeStyles((theme) => {
     },
     spacer: {
       height: "40px",
-    }
+    },
+    calendarContainer: {
+      width: "30%",
+      position: "absolute",
+      left: "50%",
+      zIndex: 9999,
+      backgroundColor: "rgba(255, 255, 255, .9)",
+    },
   };
 });
 
@@ -35,12 +44,32 @@ const options = {
       hitRadius: 8,
     },
   },
+  scales: {
+    x: {
+      grid: {
+        tickColor: "grey",
+      },
+      ticks: {
+        color: Grey[500],
+      },
+    },
+    y: {
+      grid: {
+        tickColor: "grey",
+      },
+      ticks: {
+        color: Grey[500],
+      },
+    },
+  },
   tension: 1,
 };
 
 export default function History() {
   const [chartData, setChartData] = useState({});
   const [accordionData, setAccordionData] = useState({});
+  const [week, setWeek] = useState(() => moment().weeks());
+  const [showCal, setShowCal] = useState(false);
   const classes = useStyles();
 
   const handleMonth = async (username) => {
@@ -50,8 +79,24 @@ export default function History() {
     setAccordionData(data);
     setChartData(createChartData(data));
   };
-  const handleWeek = async () => {
-    alert("We out here fetching the current week");
+
+  const handleDateChange = (date) => {
+    const newWeek = moment(date).weeks();
+    setWeek(newWeek);
+    handleWeek(newWeek);
+  };
+
+  const handleWeek = async (weekNumber, username = "kenny") => {
+    try {
+      const { data } = await axios.get("/api/week", {
+        params: { username, week: weekNumber },
+      });
+      setAccordionData(data);
+      setChartData(createChartData(data));
+    } catch (err) {
+      console.log(err);
+      console.log("Couldn't retrieve the data.");
+    }
   };
 
   return (
@@ -64,25 +109,49 @@ export default function History() {
         <div className="spacer" style={{ width: "10px" }}>
           {""}
         </div>
-        <Button variant="contained" color="secondary" onClick={handleWeek}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => handleWeek(moment().weeks())}
+        >
           View Current Week
+        </Button>
+        <div className="spacer" style={{ width: "10px" }}>
+          {""}
+        </div>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => setShowCal((prev) => !prev)}
+        >
+          Toggle Week
         </Button>
       </Grid>
       <hr />
       <div className={classes.spacer}></div>
+      {showCal && (
+        <div className={classes.calendarContainer}>
+          <Calendar
+            onChange={handleDateChange}
+            maxDate={new Date()}
+            defaultValue={new Date()}
+            calendarType="US"
+          />
+        </div>
+      )}
       <Grid container direction="row" justify="center">
         <Grid item xs={6}>
           {!isEmpty(chartData) && (
             <Line
               data={chartData}
               options={options}
-             className={classes.chart}
+              className={classes.chart}
             />
           )}
         </Grid>
         <div
           className="spacer"
-          style={{ width: "2rem", "max-width": "100px" }}
+          style={{ width: "2rem", maxWidth: "100px" }}
         ></div>
         <Grid item xs={5} container direction="column">
           {!isEmpty(accordionData) &&

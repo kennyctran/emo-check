@@ -1,12 +1,22 @@
 const { User } = require("../../db/models/schema.js");
+const moment = require("moment");
 
 module.exports = {
-  async updateUser({ username, date, entry, entryTitle, emotionalRating }) {
+  async updateUser({
+    username,
+    date,
+    entry,
+    entryTitle,
+    emotionalRating,
+    week,
+  }) {
     try {
       await User.updateOne(
         { username: username },
         {
-          $push: { ratings: { date, entry, entryTitle, emotionalRating } },
+          $push: {
+            ratings: { date, entry, entryTitle, emotionalRating, week },
+          },
         }
       );
     } catch (err) {
@@ -23,5 +33,11 @@ module.exports = {
       console.error(err);
       throw new Error("Could not find user");
     }
+  },
+
+  async getUserWeek(username, week) {
+    const user = await User.findOne({ username }).lean();
+    user.ratings = user.ratings.filter((rating) => rating.week == week);
+    return user;
   },
 };

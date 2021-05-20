@@ -11,5 +11,6 @@ app.use(express.static(path.join(__dirname, "../dist")));
 
 app.post("/api/submit", controller.submit);
 app.get("/api/history", controller.viewHistory);
+app.get("/api/week", controller.viewWeek);
 
 module.exports = app;
