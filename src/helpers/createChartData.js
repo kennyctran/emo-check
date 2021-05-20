@@ -2,7 +2,7 @@ import moment from "moment";
 
 export default function createChartData({ ratings }) {
   const labels = ratings.reduce((accum, { date }) => {
-    return [...accum, moment(date).format("MMMM Do YYYY")];
+    return [...accum, moment(date).format("MMMM Do")];
   }, []);
 
   const data = ratings.reduce((accum, { emotionalRating }) => {
@@ -15,8 +15,6 @@ export default function createChartData({ ratings }) {
       {
         label: "Emotional Rating",
         data,
-        color: "#fff",
-        backgroundColor: "#fff",
       },
     ],
   };

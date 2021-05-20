@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => {
     },
     spacer: {
       height: "40px",
-    }
+    },
   };
 });
 
@@ -33,6 +33,24 @@ const options = {
   elements: {
     point: {
       hitRadius: 8,
+    },
+  },
+  scales: {
+    x: {
+      grid: {
+        tickColor: "grey",
+      },
+      ticks: {
+        color: Grey[500],
+      },
+    },
+    y: {
+      grid: {
+        tickColor: "grey",
+      },
+      ticks: {
+        color: Grey[500],
+      },
     },
   },
   tension: 1,
@@ -76,7 +94,7 @@ export default function History() {
             <Line
               data={chartData}
               options={options}
-             className={classes.chart}
+              className={classes.chart}
             />
           )}
         </Grid>
