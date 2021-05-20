@@ -1,7 +1,7 @@
 const Promise = require("bluebird");
 const mongoose = require("mongoose");
 mongoose.promise = Promise;
-require("dotenv").config();
+// require("dotenv").config();
 
 const DB_URI = process.env.DB_URI;
 const DB_NAME = process.env.DB_NAME;

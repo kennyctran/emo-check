@@ -1,6 +1,6 @@
 const app = require("./server");
 const db = require("../db/connection");
-require("dotenv").config();
+// require("dotenv").config();
 const port = process.env.PORT || 2101;
 
 app.listen(port, () => {
