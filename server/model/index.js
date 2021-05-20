@@ -1,4 +1,5 @@
 const { User } = require("../../db/models/schema.js");
+const moment = require("moment");
 
 module.exports = {
   async updateUser({ username, date, entry, entryTitle, emotionalRating }) {
@@ -23,5 +24,11 @@ module.exports = {
       console.error(err);
       throw new Error("Could not find user");
     }
+  },
+
+  async getUserWeek(username, week) {
+    const user = await User.findOne({ username }).lean();
+    user.ratings = user.ratings.filter((rating) => rating.week == week);
+    return user;
   },
 };

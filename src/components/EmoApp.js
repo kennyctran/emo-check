@@ -51,21 +51,21 @@ export default function EmoApp() {
 
   const handleSubmit = async () => {
     if (entryTitle) {
-      // await axios.post("/api/submit", {
-      //   username: "kenny",
-      //   date: new Date(),
-      //   entry,
-      //   entryTitle,
-      //   emotionalRating: emotion,
-      // });
-      // TEST REQUEST
       await axios.post("/api/submit", {
-        username: "test",
+        username: "kenny",
         date: new Date(),
-        entry: "This is a test entry",
-        entryTitle: "testy",
-        emotionalRating: 3,
+        entry,
+        entryTitle,
+        emotionalRating: emotion,
       });
+      // TEST REQUEST
+      // await axios.post("/api/submit", {
+      //   username: "test",
+      //   date: new Date(),
+      //   entry: "This is a test entry",
+      //   entryTitle: "testy",
+      //   emotionalRating: 3,
+      // });
       // Step 1: Change screen to loading
       setEmotion.setNeutral();
       setEntry("");
