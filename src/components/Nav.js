@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => {
     },
     icon: {
       fontSize: "1.5rem",
-      padding: "5px",
     },
   };
 });
@@ -34,12 +33,12 @@ export default function Nav() {
       <RouterLink to="/" className={classes.link}>
         <Grid container>
           {/* <HomeRoundedIcon className={classes.icon} /> */}
-          <Typography>home</Typography>
+          <Typography className={classes.icon} style={{ fontSize: "1.5rem"}}>home</Typography>
         </Grid>
       </RouterLink>
       <RouterLink to="/history" className={classes.link}>
         {/* <CalendarTodayRoundedIcon className={classes.icon} /> */}
-        <Typography>history</Typography>
+        <Typography className={classes.icon} style={{ fontSize: "1.5rem"}}>history</Typography>
       </RouterLink>
     </Breadcrumbs>
   );
