@@ -18,6 +18,7 @@ const useStyles = makeStyles({
   time: {
     width: "50%",
     fontWeight: "400",
+    fontSize: "6rem",
   },
 });
 

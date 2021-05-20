@@ -64,7 +64,7 @@ export default function App() {
                   <Home>
                     <Greeting />
                     <Clock />
-                    <div className="spacer" style={{ height: "30px" }}></div>
+                    <div className="spacer" style={{ height: "50px" }}></div>
                     <EmoApp />
                   </Home>
                 </Grid>

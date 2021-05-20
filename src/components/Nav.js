@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => {
   return {
     link: {
       color: theme.palette.primary.main,
-      fontSize: "0.8rem",
+      fontSize: "1.5rem",
       display: "flex",
       alignItems: "center",
       textDecoration: "none",
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => {
       },
     },
     icon: {
-      fontSize: "1.2rem",
+      fontSize: "1.5rem",
       padding: "5px",
     },
   };
