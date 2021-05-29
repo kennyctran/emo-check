@@ -4,7 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/kennyctran/emo-check.git",
   "author": "Kenny Tran <kenny.tran138@gmail.com>",
-  "license": "MIT",
+  "license": "UNLICENSED",
+  "homepage": "https://emo-check.herokuapp.com/",
   "scripts": {
     "clean": "rm ./public/dist/bundle.js",
     "start": "nodemon ./server/start.js",
