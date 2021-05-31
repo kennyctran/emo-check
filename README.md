@@ -90,3 +90,4 @@ The history page is where you can view your past emotional submissions and journ
   * *Chart Your Emotions*: View your past emotions as a graph to analyze trends
   * *Reflect*: Parse through old journals to see how things were going on at a specific moment
 
+
