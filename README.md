@@ -13,7 +13,7 @@
   
   emo-check was built with <em>React</em>, <em>Material-UI</em>, <em>React Router</em>, <em>Express.js</em>, <em>Node.js</em>, <em>MongoDB</em>, and <em>Chart.js</em>. 
   
-  It is deployed using <em>Heroku</em> and <em>Mongo Atlas</em>
+  It is deployed using <em>Heroku</em> and <em>Mongo Atlas</em> at https://emo-check.herokuapp.com/
   
   </p>
 </p>
